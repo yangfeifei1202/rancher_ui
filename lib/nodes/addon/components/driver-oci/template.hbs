@@ -1,0 +1,165 @@
+{{#accordion-list showExpandAll=false as | al expandFn |}}
+  <div class="over-hr"><span>{{driverOptionsTitle}}</span></div>
+
+  {{#accordion-list-item
+    title=(t 'nodeDriver.oci.placement.title')
+    detail=(t 'nodeDriver.oci.placement.detail')
+    expandAll=expandAll
+    expand=(action expandFn)
+    expandOnInit=true
+  }}
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.environment.label'}}</label>
+        {{new-select classNames="form-control" content=environments optionLabelPath='value' value=config.environment}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.region.label'}}</label>
+        {{new-select classNames="form-control" content=regionChoices optionLabelPath='displayName' optionValuePath='name' value=config.location}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.availabilitySet.label'}}</label>
+        {{input type="text" value=config.availabilitySet classNames="form-control" placeholder=(t 'nodeDriver.oci.availabilitySet.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.resourceGroup.label'}}</label>
+        {{input type="text" value=config.resourceGroup classNames="form-control" placeholder=(t 'nodeDriver.oci.resourceGroup.placeholder')}}
+      </div>
+    </div>
+  {{/accordion-list-item}}
+
+  {{#accordion-list-item
+    title=(t 'nodeDriver.oci.access.title')
+    detail=(t 'nodeDriver.oci.access.detail')
+    expandAll=expandAll
+    expand=(action expandFn)
+    expandOnInit=true
+  }}
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.subscriptionId.label'}}{{field-required}}</label>
+        {{input type="text" value=config.subscriptionId classNames="form-control" placeholder=(t 'nodeDriver.oci.subscriptionId.placeholder')}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.clientId.label'}}{{field-required}}</label>
+        {{input type="text" value=config.clientId classNames="form-control"}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.clientSecret.label'}}{{field-required}}</label>
+        {{input type="password" value=config.clientSecret classNames="form-control"}}
+      </div>
+    </div>
+  {{/accordion-list-item}}
+
+  {{#accordion-list-item
+    title=(t 'nodeDriver.oci.network.title')
+    detail=(t 'nodeDriver.oci.network.detail')
+    expandAll=expandAll
+    expand=(action expandFn)
+    expandOnInit=true
+  }}
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.subnet.label'}}</label>
+        {{input type="text" value=config.subnet classNames="form-control" placeholder=(t 'nodeDriver.oci.subnet.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.subnetPrefix.label'}}</label>
+        {{input type="text" value=config.subnetPrefix classNames="form-control" placeholder=(t 'nodeDriver.oci.subnetPrefix.placeholder')}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.vnet.label'}}</label>
+        {{input type="text" value=config.vnet classNames="form-control" placeholder=(t 'nodeDriver.oci.vnet.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.staticPublicIp.label'}}</label>
+        {{new-select classNames="form-control" content=publicIpChoices optionLabelPath='name' optionValuePath='value' value=publicIpChoice}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.privateIpAddress.label'}}</label>
+        {{input type="text" value=config.privateIpAddress classNames="form-control" placeholder=(t 'nodeDriver.oci.privateIpAddress.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.usePrivateIp.label'}}</label>
+        <div>
+          {{input type="checkbox" checked=config.usePrivateIp disabled=privateSet}}
+        </div>
+      </div>
+    </div>
+  {{/accordion-list-item}}
+
+  {{#accordion-list-item
+    title=(t 'nodeDriver.oci.instance.title')
+    detail=(t 'nodeDriver.oci.instance.detail')
+    expandAll=expandAll
+    expand=(action expandFn)
+    expandOnInit=true
+  }}
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.image.label'}}</label>
+        {{input type="text" value=config.image classNames="form-control" placeholder=(t 'nodeDriver.oci.image.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.size.label'}}</label>
+        {{new-select classNames="form-control" content=sizeChoices optionLabelPath='value' optionGroupPath='group' value=config.size}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.dockerPort.label'}}</label>
+        {{input type="text" value=config.dockerPort classNames="form-control" placeholder=(t 'nodeDriver.oci.dockerPort.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.openPort.label'}}</label>
+        {{input type="text" value=openPorts classNames="form-control" placeholder=(t 'nodeDriver.oci.openPort.placeholder')}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.sshUser.label'}}</label>
+        {{input type="text" value=config.sshUser classNames="form-control" placeholder=(t 'nodeDriver.oci.sshUser.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <label class="acc-label">{{t 'nodeDriver.oci.storageType.label'}}</label>
+        {{new-select classNames="form-control" content=storageTypeChoices optionLabelPath='name' optionValuePath='value' value=config.storageType}}
+      </div>
+    </div>
+  {{/accordion-list-item}}
+
+  <div class="over-hr"><span>{{templateOptionsTitle}}</span></div>
+
+  {{form-name-description
+    model=model
+    nameRequired=true
+  }}
+
+  {{form-user-labels
+    initialLabels=labelResource.labels
+    setLabels=(action 'setLabels')
+    expandAll=expandAll
+    expand=(action expandFn)
+  }}
+
+  {{form-engine-opts
+    machine=model
+    showEngineUrl=showEngineUrl
+  }}
+
+  {{top-errors errors=errors}}
+  {{save-cancel save="save" cancel="cancel" editing=editing}}
+{{/accordion-list}}
