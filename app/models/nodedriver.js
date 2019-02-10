@@ -83,6 +83,11 @@ export default Resource.extend({
   }),
 
   hasBuiltinUi: computed('name', function() {
+    let index = BUILT_IN_UI.indexOf(get(this, 'name'));
+    let name = get(this, 'name');
+
+    console.log('Driver %s built in ui index: %s', name, index);
+
     return BUILT_IN_UI.indexOf(get(this, 'name')) >= 0;
   }),
 
@@ -95,6 +100,11 @@ export default Resource.extend({
   }),
 
   hasUi: computed('hasBuiltinUi', function() {
+    let bi = get(this, 'hasBuiltinUi');
+    let all = get(this, 'hasBuiltinUi') || !!get(this, 'uiUrl');
+
+    console.log('Buit in: %s, all: %s', bi, all);
+
     return get(this, 'hasBuiltinUi') || !!get(this, 'uiUrl');
   }),
 

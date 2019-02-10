@@ -65,7 +65,7 @@
       </div>
       {{#each (get providerGroups "rkeGroup") as |choice|}}
         {{#link-to (query-params provider=choice.name) class=(concat "mb-20 mt-10 col span-3 col-inline nav-box-item driver " choice.name)}}
-          <div class="machine-driver {{if choice.genericIcon 'generic'}} {{choice.name}}"></div>
+          <div class="machine-driver {{choice.name}}"></div>
           <p class="driver-name">{{driver-name choice.name}}</p>
         {{/link-to}}
       {{/each}}
